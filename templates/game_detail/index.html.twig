@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GameDetailController!{% endblock %}
+
+{% block body %}
+    {% include 'partial/topBackGround.html.twig' with { 'image': game[0].thumbnailCover } %}
+
+    <div>
+        <img src="{{ game[0].thumbnailCover }}" alt="{{ game[0].name }}">
+
+        <div>
+            <h2>{{ game[0].name }}</h2>
+        </div>
+    </div>
+
+{% endblock %}

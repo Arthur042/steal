@@ -1,0 +1,11 @@
+.displayTitle{
+  position: relative;
+  padding-top: 4rem;
+  margin-bottom: 3rem;
+
+  >h2{
+    position: absolute;
+    top: 0;
+    left: -40px;
+  }
+}

@@ -1,0 +1,16 @@
+
+<a href="{{ path('app_detail', {'slug': game.slug}) }}" class="myCard mb-5 {% if css is defined %} lowerCard {% endif %}">
+    <div class="cardImg">
+        <img src="{{ game.thumbnailCover }}" alt="image de {{ game.name }}">
+        <div class="promo">
+            <p>-25%</p>
+        </div>
+    </div>
+    <div class="cardContent d-flex justify-content-between align-items-center mt-2">
+        <div class="d-flex">
+            <div class="note me-2">8</div>
+            <div class="name ms-2">{{ game.name }}</div>
+        </div>
+        <div class="price">{{ game.price }} €</div>
+    </div>
+</a>

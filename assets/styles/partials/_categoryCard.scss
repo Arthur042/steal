@@ -1,0 +1,22 @@
+.myCategoryCard{
+  background-image: url("../../../assets/images/category.jpg");
+  width: 380px;
+  height: 210px;
+  position: relative;
+  border-radius: 1rem;
+  color: white;
+
+  img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    transition: 0.5s ease-in-out;
+  }
+
+  &:hover{
+    img{
+      width: 62%;
+    }
+  }
+}
