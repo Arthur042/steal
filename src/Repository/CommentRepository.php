@@ -66,4 +66,18 @@ class CommentRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findByGame(array $game): array
+    {
+        return $this->createQueryBuilder('comment')
+            ->select('comment, account.name AS username')
+            ->join('comment.account', 'account')
+            ->where('comment.game = :game')
+            ->orderBy('comment.createdAt', 'DESC')
+            ->setMaxResults(6)
+            ->setParameter('game', $game)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

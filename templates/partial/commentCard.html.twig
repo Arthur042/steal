@@ -1,7 +1,7 @@
 
 <div class="myCommentCard mb-5 d-flex flex-column justify-content-between">
         <div class="d-flex flex-column">
-            <p>{{ comment.username }}</p>
+               <p>{{ comment.username }}</p>
             <div class="note ms-2">
                 {% if comment[0].rank == 0.5 %}
                     <i class="fas fa-star-half-stroke"></i>
@@ -74,8 +74,12 @@
                     <i class="fas fa-star"></i>
                 {% endif %}
             </div>
-            <p>{{ comment.gamename }}</p>
-            <p class="contentComment">{{ comment[0].content|length > 80 ? comment[0].content|slice(0, 80) ~ '...' : comment[0].content }}</p>
+            {% if comment.gamename is defined %}
+                <p>{{ comment.gamename }}</p>
+                <p class="contentComment">{{ comment[0].content|length > 80 ? comment[0].content|slice(0, 80) ~ '...' : comment[0].content }}</p>
+            {% else %}
+                    <p class="contentComment">{{ comment[0].content }}</p>
+            {% endif %}
         </div>
 
         <p>écrit le {{ comment[0].createdAt|date("d/m/Y") }}</p>

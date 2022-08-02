@@ -121,4 +121,18 @@ class GameRepository extends ServiceEntityRepository
                 ->getResult()
             ;
     }
+
+    public function findThreeByGenre(string $genre): array
+    {
+        return  $this->createQueryBuilder('game')
+                ->join('game.genres', 'genre')
+                ->where('genre.name = :genre')
+                ->setParameter('genre', $genre)
+                ->setMaxResults(3)
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+
 }

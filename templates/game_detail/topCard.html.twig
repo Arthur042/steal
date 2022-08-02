@@ -1,0 +1,28 @@
+<div class="d-flex flex-wrap justify-content-between ">
+    <div class="imageCard">
+        <img src="{{ game[0].thumbnailCover }}">
+    </div>
+
+    <div class="glassCard d-flex flex-column align-items-center">
+        <h2>{{ game[0].name }}</h2>
+        <p>Disponible en :</p>
+        <div class="d-flex flex-wrap flex-column align-self-baseline flag">
+
+            {% for langage in game[0].country %}
+                <div>
+                    <img src="{{ langage.urlFlag }}" alt="drapeau {{ langage.slug }}"> - {{ langage.nationality }}
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="price d-flex align-items-baseline">
+            <p class="realPrice">{{ game[0].price }}€</p>
+            <p class="promo">-35%</p>
+            <p class="newPrice">{{ game[0].price * 0.75 }}€</p>
+        </div>
+        <div class="card_buy">
+            <a href="" class="btn">Acheter</a>
+        </div>
+    </div>
+</div>
