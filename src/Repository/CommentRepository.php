@@ -54,4 +54,16 @@ class CommentRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function countCommentByGame(array $game): array
+    {
+        return $this->createQueryBuilder('comment')
+            ->select('COUNT(comment) AS nbComment, AVG(comment.rank) AS avgRating')
+            ->where('comment.game = :game')
+            ->groupBy('comment.game')
+            ->setParameter('game', $game)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

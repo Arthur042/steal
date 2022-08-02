@@ -5,12 +5,160 @@
 {% block body %}
     {% include 'partial/topBackGround.html.twig' with { 'image': game[0].thumbnailCover } %}
 
-    <div>
-        <img src="{{ game[0].thumbnailCover }}" alt="{{ game[0].name }}">
+{# Card with glass effect #}
+    <section>
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between ">
+                <div class="imageCard">
+                    <img src="{{ game[0].thumbnailCover }}">
+                </div>
 
-        <div>
-            <h2>{{ game[0].name }}</h2>
+                <div class="glassCard d-flex flex-column align-items-center">
+                    <h2>{{ game[0].name }}</h2>
+                    <p>Disponible en :</p>
+                    <div class="d-flex flex-wrap flex-column align-self-baseline flag">
+
+                        {% for langage in game[0].country %}
+                            <div>
+                                <img src="{{ langage.urlFlag }}" alt="drapeau {{ langage.slug }}"> - {{ langage.nationality }}
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+                    <div class="price d-flex align-items-baseline">
+                        <p class="realPrice">{{ game[0].price }}€</p>
+                        <p class="promo">-35%</p>
+                        <p class="newPrice">{{ game[0].price * 0.75 }}€</p>
+                    </div>
+                    <div class="card_buy">
+                        <a href="" class="btn">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="desc d-flex flex-wrap justify-content-between">
+                <div class="leftDesc">
+                    <h2 class="mb-5">A propos du jeu</h2>
+                    <p>{{ game[0].description|length > 400 ? game[0].description|slice(0, 400) ~ '...' : game[0].description }}</p>
+                    <a href="#">Voir plus</a>
+                </div>
+
+                <div class="rightDesc">
+                    <div class="note d-flex align-items-center">
+                        <p class="pill me-3"
+                        {% if commentData[0]['avgRating'] < 2 %}
+                            style="color: #be0404; border: 3px solid #be0404;"
+                        {% elseif commentData[0]['avgRating'] < 3.5  %}
+                            style="color: #f8b722; border: 3px solid #f8b722;"
+                        {% else %}
+                            style="color: #246202; border: 3px solid #246202;"
+                                {% endif %}>
+                            {{ commentData[0]['avgRating'] }}
+                        </p>
+                        <p class="nbComment">Basé sur
+                            </br>
+                            <span>{{ commentData[0].nbComment }} commentaires</span>
+                        </p>
+                    </div>
+                    <div class="tableDesc">
+                        <table>
+                            <tr>
+                                <th>Date de sortie :</th>
+                                <td>{{ game[0].publishedAt|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Editeur :</th>
+                                <td>{% if game[0].publisher is not null %} {{ game[0].publisher.name}} {% else %} inconnu {% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Genre :</th>
+                                <td>
+                                    {% for genre in game[0].genres %}
+                                        {{ genre.name }}
+                                        {% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mb-4">Configurations</h2>
+            <div class="configuration d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="minConfig">
+                        <p>minimale</p>
+                        <table>
+                            <tr>
+                                <th>OS:</th>
+                                <td>Windows 10 （64-bit)</td>
+                            </tr>
+                            <tr>
+                                <th>Processor:</th>
+                                <td>Intel Core i3-4130 or Core i5-3470 or AMD FX-6100</td>
+                            </tr>
+                            <tr>
+                                <th>Memory:</th>
+                                <td>8 GB RAM</td>
+                            </tr>
+                            <tr>
+                                <th>Graphics:</th>
+                                <td>NVIDIA GeForce GT 1030 (DDR4) or AMD Radeon RX 550</td>
+                            </tr>
+                            <tr>
+                                <th>DirectX:</th>
+                                <td>Version 12</td>
+                            </tr>
+                            <tr>
+                                <th>Network:</th>
+                                <td>Broadband Internet connection</td>
+                            </tr>
+                            <tr>
+                                <th>Storage:</th>
+                                <td>36 GB available space</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="recomandedCondig">
+                        <p>recommandée</p>
+                        <table>
+                            <tr>
+                                <th>OS:</th>
+                                <td>Windows 10 （64-bit)</td>
+                            </tr>
+                            <tr>
+                                <th>Processor:</th>
+                                <td>Intel Core i5-4460 or AMD FX-8300</td>
+                            </tr>
+                            <tr>
+                                <th>Memory:</th>
+                                <td>8 GB RAM</td>
+                            </tr>
+                            <tr>
+                                <th>Graphics:</th>
+                                <td>NVIDIA GeForce GTX 1060 (VRAM 3GB) or AMD Radeon RX 570 (VRAM 4GB)</td>
+                            </tr>
+                            <tr>
+                                <th>DirectX:</th>
+                                <td>Version 12</td>
+                            </tr>
+                            <tr>
+                                <th>Network:</th>
+                                <td>Broadband Internet connection</td>
+                            </tr>
+                            <tr>
+                                <th>Storage:</th>
+                                <td>36 GB available space</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
 {% endblock %}

@@ -1,12 +1,14 @@
 
 <div class="imgBg d-flex align-items-center" {% if image is defined %} style="background-image: url('{{ image }}');" {% endif %}>
     <div class="d-flex flex-column justify-content-center m-auto contentHeader">
+        {% if image is not defined %} 
         <h2>God of War</h2>
-        <div class="d-flex flex-row align-items-center">
-            <div class="promo me-3">
-                <p>-33%</p>
+            <div class="d-flex flex-row align-items-center">
+                <div class="promo me-3">
+                    <p>-33%</p>
+                </div>
+                <div class="price">42.50 €</div>
             </div>
-            <div class="price">42.50 €</div>
-        </div>
+        {% endif %}
     </div>
 </div>
