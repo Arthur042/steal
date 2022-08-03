@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark" id="navbar">
     <div id="leftNavbar">
     <a href="{{ path('app_home') }}"><img src="{{ asset('build/images/steal.png') }}"></a>
     </div>
@@ -19,7 +19,7 @@
             </ul>
 
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Jeu à chercher..." aria-label="Search">
+                <input id="search" class="form-control me-2" type="search" placeholder="Jeu à chercher..." aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
         </div>

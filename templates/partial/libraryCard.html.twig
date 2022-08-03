@@ -1,0 +1,17 @@
+
+<div class="libraryCard mb-3 d-flex justify-content-between">
+    <div class="d-flex nameGame">
+        <img class="me-3" src="{{ library.game.thumbnailCover }}">
+        <p>{{ library.game.name }}</p>
+    </div>
+
+    <div class="timePlayed d-flex flex-column justify-content-end align-items-end">
+        {% if library.installed == true %}
+            <a href="#" style="color: #2d7a01">Démarrer le jeu</a>
+        {% else %}
+            <a href="#" style="color: #ff5400">Lancer l'installation</a>
+        {% endif %}
+        <p>{{ library.gameTime|formatHour }} en tout</p>
+        <p>dernière utilisation le {{ library.lastUsedAt|date('d/m/Y') }}</p>
+    </div>
+</div>

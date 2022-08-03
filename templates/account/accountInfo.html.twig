@@ -1,0 +1,16 @@
+
+<div class="idAccount d-flex align-items-center mb-5">
+    <img src="https://picsum.photos/id/1/200/200" alt="photo de profile" class="me-4">
+    <div class="information d-flex flex-column justify-content-between">
+        <h1>{{ account.nickname|title }}</h1>
+        <div>
+            <img src="{{ account.country.urlFlag }}" alt="drapeau {{ account.country.slug }}">  {{ account.country.name }}
+        </div>
+        <ul>
+            <li>Nom : <span>{{ account.name }}</span></li>
+            <li>Email : <span>{{ account.email }}</span></li>
+            <li>Inscrit depuis le <span>{{ account.createdAt|date('d/m/Y') }}</span></li>
+            <li>Fond disponible : <span>{{ account.wallet }}€</span></li>
+        </ul>
+    </div>
+</div>

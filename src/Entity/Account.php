@@ -197,4 +197,13 @@ class Account
 
         return $this;
     }
+
+    public function getTotalTimePlayed(): ?int
+    {
+        $totalTimePlayed = 0;
+        foreach ($this->libraries as $library){
+            $totalTimePlayed += $library->getGameTime();
+        }
+        return $totalTimePlayed;
+    }
 }

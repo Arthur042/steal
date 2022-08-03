@@ -45,7 +45,7 @@ class CommentRepository extends ServiceEntityRepository
     public function findByLastComment(): array
     {
         return $this->createQueryBuilder('c')
-            ->select('c, u.name AS username, g.name AS gamename')
+            ->select('c, u.name AS username, g.name AS gamename, u.slug AS slug')
             ->join('c.account', 'u')
             ->join('c.game', 'g')
             ->orderBy('c.createdAt', 'DESC')
@@ -70,7 +70,7 @@ class CommentRepository extends ServiceEntityRepository
     public function findByGame(array $game): array
     {
         return $this->createQueryBuilder('comment')
-            ->select('comment, account.name AS username')
+            ->select('comment, account.name AS username, account.slug AS slug')
             ->join('comment.account', 'account')
             ->where('comment.game = :game')
             ->orderBy('comment.createdAt', 'DESC')

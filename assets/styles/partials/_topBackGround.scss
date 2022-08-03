@@ -32,19 +32,22 @@
     width: fit-content;
     z-index: 1;
     .promo{
-      width: 50px;
-      height: 25px;
+      width: 60px;
+      height: 35px;
       border-radius: 5px;
       background-color: #ff5400;
       box-shadow: black 0 0 4px;
 
       p{
         margin-left: 5px;
+        margin-top: 2px;
         font-weight: bold;
+        font-size: 1.2rem;
       }
     }
     .price{
       font-size: 1.5rem;
+      font-weight: bold;
     }
   }
 }

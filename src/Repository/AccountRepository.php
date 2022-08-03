@@ -39,28 +39,19 @@ class AccountRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Account[] Returns an array of Account objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Account
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findAllInfo(string $slug): array
+    {
+        return $this->createQueryBuilder('account')
+            ->select('account, comments, libraries, country, game')
+            ->leftJoin('account.comments', 'comments')
+            ->leftJoin('account.libraries', 'libraries')
+            ->join('libraries.game', 'game')
+            ->leftJoin('account.country', 'country')
+            ->where('account.slug = :slug')
+            ->orderBy('comments.createdAt', 'DESC')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

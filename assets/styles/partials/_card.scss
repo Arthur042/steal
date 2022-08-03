@@ -6,7 +6,7 @@
   }
 
   .cardImg{
-    height: 300px;
+    height: 400px;
     position: relative;
     transition: .2s ease-in-out;
     cursor: pointer;
@@ -21,15 +21,17 @@
       position: absolute;
       bottom: -5px;
       left: -5px;
-      width: 50px;
-      height: 25px;
+      width: 60px;
+      height: 35px;
       border-radius: 5px;
       background-color: #ff5400;
       box-shadow: black 0 0 4px;
 
       p{
         margin-left: 5px;
+        margin-top: 2px;
         font-weight: bold;
+        font-size: 1.2rem;
       }
     }
 

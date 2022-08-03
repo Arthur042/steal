@@ -21,7 +21,10 @@
             <div class="row">
                 {% for comment in comments %}
                     <div class="col-md-6">
-                        {% include 'partial/commentCard.html.twig' %}
+                        {% include 'partial/commentCard.html.twig' with {
+                            'comment': comment[0],
+                            'username': comment.username,
+                        } %}
                     </div>
                 {% endfor %}
             </div>

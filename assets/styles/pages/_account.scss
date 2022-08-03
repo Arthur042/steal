@@ -1,0 +1,49 @@
+
+.accountPage{
+
+  .idAccount{
+    >img{
+      box-shadow: 0 0 10px rgba(86, 86, 86, 0.5);
+    }
+
+    .information{
+      height: 200px;
+
+      h1{
+        color: #ff5400;
+        font-size: 3rem;
+      }
+
+      ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li{
+
+          span{
+            color: rgba(222, 222, 222, 0.78);
+          }
+        }
+      }
+    }
+  }
+
+  .activity{
+    width: 100%;
+
+    .totalTime{
+      width: 100%;
+      background-color: #363636;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: #262626 0 0 10px inset;
+
+      p{
+        margin: 0;
+        font-size: 2rem;
+        color: rgba(222, 222, 222, 0.78);
+      }
+    }
+  }
+}

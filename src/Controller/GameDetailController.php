@@ -26,7 +26,6 @@ class GameDetailController extends AbstractController
             $commentData[0]['avgRating'] = round($commentData[0]['avgRating'],2);
         // load star icons according to the avg rating
             $rating = $commentData[0]['avgRating'];
-            $stars = Comment::getStars($rating);
         // load comments of the game
             $comments = $this->commentRepository->findByGame($game);
         // load 3 games with the same genre
@@ -35,7 +34,6 @@ class GameDetailController extends AbstractController
         return $this->render('game_detail/index.html.twig', [
             'game' => $game,
             'commentData' => $commentData,
-            'stars' => $stars,
             'comments' => $comments,
             'gamesSameGenre' => $gamesSameGenre,
         ]);
