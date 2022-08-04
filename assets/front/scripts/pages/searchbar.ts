@@ -14,7 +14,13 @@ function querySearchBar() {
                 .then(data => {
                     let results = document.getElementById('returnSearchData');
                     results.innerHTML = data.html;
-                    results.className = results.className.replace('d-none', '');
+                    // On change le style display none en display block
+                    if (value !== '') {
+                        results.style.display = 'block';
+                    } else {
+                        results.style.display = 'none';
+                    }
+
                 })
                 .catch((e) => {
                 });

@@ -1,34 +1,36 @@
 
-{% if games|length > 0 %}
-<h2>Jeux</h2>
-{% for game in games %}
-    <a href="{{ path('app_detail', {'slug': game.slug}) }}">
-        <div>
-            <img src="{{ game.thumbnailCover }}" class="w-25 h-25">
-            <p>{{ game.name }} - {{ game.price }}€</p>
-        </div>
-    </a>
-{% endfor %}
-{% endfif %}
+<div class="overflowScroll">
+    {% if games|length > 0 %}
+        <h2 class="ms-3 my-2">Jeux</h2>
+        {% for game in games %}
+            <a href="{{ path('app_detail', {'slug': game.slug}) }}">
+                <div class="d-flex align-items-center displayResult">
+                    <img src="{{ game.thumbnailCover }}" class="me-3">
+                    <p>{{ game.name }} - <span>{{ game.price }}€</span></p>
+                </div>
+            </a>
+        {% endfor %}
+    {% endif %}
 
-{% if genres|length > 0 %}
-<h2>Genres</h2>
-{% for genre in genres %}
-    <a href="#">
-        <div>
-            <p>{{ genre.name }}</p>
-        </div>
-    </a>
-{% endfor %}
-{% endfif %}
+    {% if genres|length > 0 %}
+    <h2 class="ms-3 my-2">Genres</h2>
+    {% for genre in genres %}
+        <a href="#">
+            <div class="d-flex align-items-center displayResult">
+                <p>{{ genre.name }}</p>
+            </div>
+        </a>
+    {% endfor %}
+    {% endif %}
 
-{% if publishers|length > 0 %}
-<h2>Éditeurs</h2>
-{% for publisher in publishers %}
-    <a href="#">
-        <div>
-            <p>{{ publisher.name }}</p>
-        </div>
-    </a>
-{% endfor %}
-{% endfif %}
+    {% if publishers|length > 0 %}
+    <h2 class="ms-3 my-2">Éditeurs</h2>
+    {% for publisher in publishers %}
+        <a href="#">
+            <div class="d-flex align-items-center displayResult">
+                <p>{{ publisher.name }}</p>
+            </div>
+        </a>
+    {% endfor %}
+    {% endif %}
+</div>

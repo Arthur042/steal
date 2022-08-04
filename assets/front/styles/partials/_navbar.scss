@@ -6,19 +6,4 @@
   z-index: 10;
   transition: 1s;
 
-  #centerNavbar{
-    position: relative;
-
-    #returnSearchData{
-      background-color: white;
-      width: 500px;
-      height: 300px;
-      position: absolute;
-      bottom: -300px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: black;
-    }
-  }
-
 }
