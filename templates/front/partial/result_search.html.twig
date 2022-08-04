@@ -1,0 +1,34 @@
+
+{% if games|length > 0 %}
+<h2>Jeux</h2>
+{% for game in games %}
+    <a href="{{ path('app_detail', {'slug': game.slug}) }}">
+        <div>
+            <img src="{{ game.thumbnailCover }}" class="w-25 h-25">
+            <p>{{ game.name }} - {{ game.price }}€</p>
+        </div>
+    </a>
+{% endfor %}
+{% endfif %}
+
+{% if genres|length > 0 %}
+<h2>Genres</h2>
+{% for genre in genres %}
+    <a href="#">
+        <div>
+            <p>{{ genre.name }}</p>
+        </div>
+    </a>
+{% endfor %}
+{% endfif %}
+
+{% if publishers|length > 0 %}
+<h2>Éditeurs</h2>
+{% for publisher in publishers %}
+    <a href="#">
+        <div>
+            <p>{{ publisher.name }}</p>
+        </div>
+    </a>
+{% endfor %}
+{% endfif %}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -52,6 +53,15 @@ class AccountRepository extends ServiceEntityRepository
             ->setParameter('slug', $slug)
             ->getQuery()
             ->getResult()
+            ;
+    }
+
+    public function findAllAndCountTotalLibrary(): QueryBuilder
+    {
+        return $this->createQueryBuilder('account')
+            ->select('account, count(libraries) as total')
+            ->leftJoin('account.libraries', 'libraries')
+            ->groupBy('account.id')
             ;
     }
 }

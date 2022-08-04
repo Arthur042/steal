@@ -20,8 +20,14 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('scripts', './assets/scripts/main.ts')
-    .addStyleEntry('styles', './assets/styles/main.scss')
+    .addEntry('shared_scripts', './assets/shared/scripts/main.ts')
+    .addStyleEntry('shared_styles', './assets/shared/styles/main.scss')
+
+    .addEntry('front_scripts', './assets/front/scripts/main.ts')
+    .addStyleEntry('front_styles', './assets/front/styles/main.scss')
+
+    .addEntry('back_scripts', './assets/back/scripts/main.ts')
+    .addStyleEntry('back_styles', './assets/back/styles/main.scss')
 
     .copyFiles([
         {from: './assets/images', to: 'images/[path][name].[ext]'},

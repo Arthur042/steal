@@ -39,31 +39,6 @@ class GameRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Game[] Returns an array of Game objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Game
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
     /**
      * @return Game[] Returns an array of Game objects
      */
@@ -134,5 +109,15 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByNameLike(string $name): array
+    {
+        return  $this->createQueryBuilder('game')
+                ->select('game.name, game.slug, game.thumbnailCover, game.price')
+                ->where('game.name LIKE :name')
+                ->setParameter('name', '%'.$name.'%')
+                ->getQuery()
+                ->getResult()
+            ;
+    }
 
 }

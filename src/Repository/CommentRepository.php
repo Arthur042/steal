@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -67,17 +68,15 @@ class CommentRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findByGame(array $game): array
+    public function findByGame(string $slug): QueryBuilder
     {
         return $this->createQueryBuilder('comment')
             ->select('comment, account.name AS username, account.slug AS slug')
             ->join('comment.account', 'account')
-            ->where('comment.game = :game')
+            ->join('comment.game', 'game')
+            ->where('game.slug = :slug')
             ->orderBy('comment.createdAt', 'DESC')
-            ->setMaxResults(6)
-            ->setParameter('game', $game)
-            ->getQuery()
-            ->getResult()
+            ->setParameter('slug', $slug)
             ;
     }
 }

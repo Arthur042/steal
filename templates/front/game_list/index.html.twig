@@ -1,0 +1,15 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Steal{% endblock %}
+
+{% block body %}
+    <div class="container listItem">
+        <div class="row">
+            {% for game in games %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                {% include 'front/partial/card.html.twig' %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

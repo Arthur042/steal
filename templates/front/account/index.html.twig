@@ -1,0 +1,32 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+    <div class="marginTop">
+        <div class="container accountPage">
+            {% include 'front/account/accountInfo.html.twig' %}
+
+            <div class="activity mb-5">
+                <div class="totalTime d-flex justify-content-between align-items-center mb-5">
+                    <p>Activité total</p>
+                    <p>{{ account.getTotalTimePlayed()|formatHour }}</p>
+                </div>
+
+                {% for library in account.libraries %}
+                    {% include 'front/partial/libraryCard.html.twig' %}
+                {% endfor %}
+            </div>
+
+            <h2 class="mb-5">Derniers commentaires</h2>
+            <div class="row">
+                {% for comment in account.comments %}
+                    <div class="col-md-6">
+                        {% include 'front/partial/commentCard.html.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

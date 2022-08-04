@@ -1,0 +1,14 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Admin Account{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-3">Liste des comptes</h1>
+
+    {% include 'back/partial/table.html.twig' %}
+    <div class="navigation d-flex justify-content-center my-2">
+        {{ knp_pagination_render(accounts) }}
+    </div>
+
+{% endblock %}
