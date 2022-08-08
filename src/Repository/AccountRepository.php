@@ -46,7 +46,7 @@ class AccountRepository extends ServiceEntityRepository
             ->select('account, comments, libraries, country, game')
             ->leftJoin('account.comments', 'comments')
             ->leftJoin('account.libraries', 'libraries')
-            ->join('libraries.game', 'game')
+            ->leftJoin('libraries.game', 'game')
             ->leftJoin('account.country', 'country')
             ->where('account.slug = :slug')
             ->orderBy('comments.createdAt', 'DESC')

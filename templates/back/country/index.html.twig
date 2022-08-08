@@ -1,0 +1,78 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Admin Country{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-3">Liste des Pays</h1>
+
+    <div class="d-flex flex-column align-items-end">
+        <a  class="mybtn my-3 w-auto"
+            href="{{ path('app_country_admin_new') }}"
+        >
+            Nouveau
+        </a>
+
+        <table class="table table-dark table-hover table-striped">
+            <thead>
+            <tr>
+                <th>
+                    {{
+                    knp_pagination_sortable(countries, 'Nom', 'country.name')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'country.name' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'country.name' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(countries, 'Nationalité', 'country.nationality')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'country.nationality' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'country.nationality' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(countries, 'Code', 'country.code')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'country.code' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'country.code' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    Drapeau
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.nationality }}</td>
+                    <td>{{ country.code }}</td>
+                    <td>
+                        <img src="{{ country.urlFlag }}"
+                             alt="{{ country.name }}"
+                        >
+                    </td>
+                    <td>
+                        <a href="{{ path('app_country_admin_edit', {'slug': country.slug}) }}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

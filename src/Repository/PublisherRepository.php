@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Publisher;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -48,6 +49,11 @@ class PublisherRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function getQbAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('publisher');
     }
 
 }

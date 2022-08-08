@@ -2,12 +2,17 @@
 
 namespace App\Controller\front;
 
+use App\Entity\Account;
+use App\Form\AccountType;
 use App\Repository\CommentRepository;
 use App\Repository\GameRepository;
 use App\Repository\GenreRepository;
 use App\Repository\PublisherRepository;
+use App\Service\TextService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,6 +23,9 @@ class HomeController extends AbstractController
         GameRepository $gameRepository,
         GenreRepository $genreRepository,
         CommentRepository $commentRepository,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        TextService $textService,
     ): Response
     {
         // Afficher les 9 jeux par temps de jeux
@@ -31,12 +39,27 @@ class HomeController extends AbstractController
         // Afficher 9 genres par ordre alphabétique
             $categories = $genreRepository->findNineGenres();
 
+        // formulaire
+             $form = $this->createForm(AccountType::class, new Account());
+                    $form->handleRequest($request);
+
+                    if ($form->isSubmitted() && $form->isValid()) {
+                        /** @var Account $data */
+                        $data = $form->getData();
+                        $data->SetSlug($textService->slugify($data->getName()));
+                        $data->SetCreatedAt(new \DateTime());
+                        $entityManager->persist($data);
+                        $entityManager->flush();
+                        return $this->redirectToRoute('app_home');
+                    }
+
         return $this->render('front/home/index.html.twig', [
             'gamesByTime' => $gamesByTime,
             'gamesByLastRealese' => $gamesByLastRelease,
             'lastComment' => $lastComment,
             'gamesByBestSeller' => $gamesByBestSeller,
             'categories' => $categories,
+            'form' => $form->createView(),
         ]);
     }
 

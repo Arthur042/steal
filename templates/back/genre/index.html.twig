@@ -1,0 +1,59 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Admin Genre{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-3">Liste des Catégories</h1>
+
+    <div class="d-flex flex-column align-items-end">
+        <a  class="mybtn my-3 w-auto"
+            href="{{ path('app_genre_admin_new') }}"
+        >
+            Nouveau
+        </a>
+
+        <table class="table table-dark table-hover table-striped">
+            <thead>
+            <tr>
+                <th>
+                    {{
+                    knp_pagination_sortable(genres, 'Nom', 'genre.name')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'genre.name' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'genre.name' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(genres, 'nombre de jeux', 'total')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for genre in genres %}
+                <tr>
+                    <td>{{ genre[0].name }}</td>
+                    <td>{{ genre['total'] }}</td>
+                    <td>
+                        <a href="{{ path('app_genre_admin_edit', {'slug': genre[0].slug}) }}">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

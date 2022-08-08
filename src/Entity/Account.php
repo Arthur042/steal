@@ -22,7 +22,7 @@ class Account
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nickname = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
@@ -83,7 +83,7 @@ class Account
         return $this->nickname;
     }
 
-    public function setNickname(string $nickname): self
+    public function setNickname(?string $nickname): self
     {
         $this->nickname = $nickname;
 

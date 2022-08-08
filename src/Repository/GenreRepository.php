@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -60,5 +61,13 @@ class GenreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function getQbAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('genre')
+            ->select('genre, COUNT(games) AS total')
+            ->leftJoin('genre.games', 'games')
+            ->groupBy('genre.id');
     }
 }

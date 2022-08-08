@@ -6,7 +6,84 @@
 
     <h1 class="my-3">Liste des comptes</h1>
 
-    {% include 'back/partial/table.html.twig' %}
+    <table class="table table-dark table-hover table-striped">
+        <thead>
+        <tr>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Nom', 'account.name')|raw
+                }}
+                {% if app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Email', 'account.email')|raw
+                }}
+                {% if app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Pseudo', 'account.nickname')|raw
+                }}
+                {% if app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Porte-feuille', 'account.wallet')|raw
+                }}
+                {% if app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Date d\'inscription', 'account.createdAt')|raw
+                }}
+                {% if app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+            <th>
+                {{
+                knp_pagination_sortable(accounts, 'Nombre de jeu', 'total')|raw
+                }}
+                {% if app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'asc' %}
+                    <i class="fas fa-sort-up"></i>
+                {% elseif app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'desc' %}
+                    <i class="fas fa-sort-down"></i>
+                {% endif %}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account[0].name }}</td>
+                <td>{{ account[0].email }}</td>
+                <td>{{ account[0].nickname }}</td>
+                <td>{{ account[0].wallet }}€</td>
+                <td>{{ account[0].createdAt|date('d/m/Y') }}</td>
+                <td>{{ account['total'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     <div class="navigation d-flex justify-content-center my-2">
         {{ knp_pagination_render(accounts) }}
     </div>

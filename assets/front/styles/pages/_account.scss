@@ -2,12 +2,22 @@
 .accountPage{
 
   .idAccount{
+    width: 100%;
+    position: relative;
+
     >img{
-      box-shadow: 0 0 10px rgba(86, 86, 86, 0.5);
+      background-color: #272727;
+      z-index: 2;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
 
     .information{
-      height: 200px;
+      height: 232px;
+      background-color: #272727;
+      z-index: 2;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
 
       h1{
         color: #ff5400;
@@ -25,6 +35,17 @@
             color: rgba(222, 222, 222, 0.78);
           }
         }
+      }
+    }
+
+    .accountModification{
+      width: 300px;
+      position: absolute;
+      left: 0;
+      transition: .5s ease-in-out;
+
+      &.active{
+        left: 600px;
       }
     }
   }
