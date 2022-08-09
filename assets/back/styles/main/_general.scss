@@ -2,3 +2,19 @@
     background-color: #383838;
     box-shadow: 0 0 20px rgba(56, 56, 56, 0.63);
 }
+
+.admin-menu {
+    a {
+        text-decoration: none;
+        color: #dfdfdf;
+
+        &:hover {
+            color: #ff5400;
+        }
+
+        &.menu-active {
+            color: #ff5400;
+            font-size: 1.2rem;
+        }
+    }
+}
