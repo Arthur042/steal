@@ -53,7 +53,22 @@ class PublisherRepository extends ServiceEntityRepository
 
     public function getQbAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('publisher');
+        return $this->createQueryBuilder('publisher')
+            ->select('publisher, country')
+            ->join('publisher.country', 'country');
+    }
+
+    public function getTotalSell(): array
+    {
+        return $this->createQueryBuilder('publisher')
+            ->select('publisher.name, SUM(game.price) AS chiffreAffaire, COUNT(library.id) AS nbJeu')
+            ->join('publisher.games', 'game')
+            ->join('game.libraries', 'library')
+            ->groupBy('publisher')
+            ->orderBy('chiffreAffaire', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Country;
 use App\Entity\Publisher;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,6 +27,11 @@ class PublisherType extends AbstractType
                 'class' => Country::class,
                 'choice_label' => 'name',
                 'required' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.nationality', 'ASC')
+                        ;
+                }
             ])
             ->add('createdAt', DateType::class, [
                 'label' => 'Créé le',

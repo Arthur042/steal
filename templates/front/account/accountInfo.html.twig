@@ -1,7 +1,13 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 <div class="idAccount d-flex align-items-center mb-5">
-    <img src="https://picsum.photos/id/1/200/200" alt="photo de profile" class="pe-4">
+    <img src="
+    {% if account.pathImage is not null %}
+        {{ account.pathImage }}
+    {% else %}
+        {{ asset('build/images/profil.png') }}
+    {% endif %}
+" alt="photo de profile" class="pe-4">
     <div class="information d-flex flex-column justify-content-between">
         <h1>
             {% if account.nickname is not null %}
@@ -27,6 +33,15 @@
 
     <div class="accountModification">
         {{ form_start(form) }}
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(form.nickname) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.country) }}
+            </div>
+        </div>
+            {{ form_row(form.pathImage) }}
         {{ form_end(form) }}
     </div>
 </div>

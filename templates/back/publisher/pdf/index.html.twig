@@ -1,0 +1,45 @@
+{% set absoluteUrl = app.request.scheme ~'://' ~ app.request.httpHost %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chiffre d'affaire des éditeurs</title>
+        <link rel="stylesheet" type="text/css"
+              href="{{ absoluteUrl ~ asset('build/back_styles.css') }}"
+        >
+    </head>
+    <body style="background-color: white">
+        <div>
+            <h1 class="text-center my-3">Chiffre d'affaire des éditeurs</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Éditeur</th>
+                    <th>nombre de vente</th>
+                    <th>chiffre d'affaire</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for publisher in totalSells %}
+                    {% set totalCa = totalCa + publisher['chiffreAffaire'] %}
+                    {% set totalSell = totalSell + publisher['nbJeu'] %}
+                <tr>
+                    <td>{{ publisher['name'] }}</td>
+                    <td>{{ publisher['nbJeu'] }}</td>
+                    <td>{{ publisher['chiffreAffaire'] }}€</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td class="fw-bold">{{ totalSell }}</td>
+                    <td class="fw-bold">{{ totalCa }}€</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

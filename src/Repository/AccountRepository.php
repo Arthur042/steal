@@ -56,12 +56,13 @@ class AccountRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findAllAndCountTotalLibrary(): QueryBuilder
+    public function getQbAll(): QueryBuilder
     {
         return $this->createQueryBuilder('account')
-            ->select('account, count(libraries) as total')
-            ->leftJoin('account.libraries', 'libraries')
-            ->groupBy('account.id')
-            ;
+                ->select('account', 'country', 'COUNT(libraries) AS total')
+                ->leftJoin('account.libraries', 'libraries')
+                ->leftJoin('account.country', 'country')
+                ->groupBy('account')
+                ;
     }
 }

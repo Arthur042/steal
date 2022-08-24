@@ -43,6 +43,9 @@ class Account
     #[ORM\ManyToOne(inversedBy: 'accounts')]
     private ?Country $country = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pathImage = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -205,5 +208,17 @@ class Account
             $totalTimePlayed += $library->getGameTime();
         }
         return $totalTimePlayed;
+    }
+
+    public function getPathImage(): ?string
+    {
+        return $this->pathImage;
+    }
+
+    public function setPathImage(?string $pathImage): self
+    {
+        $this->pathImage = $pathImage;
+
+        return $this;
     }
 }

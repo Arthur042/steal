@@ -36,7 +36,10 @@ class GameDetailController extends AbstractController
             $game = $this->gameRepository->findOneBySlug($slug);
         // Take number of comment and avg rating of the game
             $commentData = $this->commentRepository->countCommentByGame($game);
-            $commentData[0]['avgRating'] = round($commentData[0]['avgRating'],2);
+            if(count($commentData) !== 0) {
+                $commentData[0]['avgRating'] = round($commentData[0]['avgRating'],2);
+            }
+
         // load 3 games with the same genre
             $gamesSameGenre = $this->gameRepository->findThreeByGenre($game[0]->getGenres()[0]->getName());
 

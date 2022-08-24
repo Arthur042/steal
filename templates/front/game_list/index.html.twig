@@ -3,13 +3,24 @@
 {% block title %}Steal{% endblock %}
 
 {% block body %}
+
+
     <div class="container listItem">
-        <div class="row">
-            {% for game in games %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                {% include 'front/partial/card.html.twig' %}
-            </div>
-            {% endfor %}
+        <div class="searchDisplay">
         </div>
+        <div class="basicDisplay">
+            <h1 class="my-5">Liste des jeux</h1>
+            <div class="row">
+                {% for game in games %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        {% include 'front/partial/card.html.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="navigation d-flex justify-content-center my-2">
+                {{ knp_pagination_render(games) }}
+            </div>
+        </div>
+
     </div>
 {% endblock %}

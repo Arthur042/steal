@@ -120,4 +120,11 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getQbAll()
+    {
+        return $this->createQueryBuilder('game')
+            ->select('game, publisher')
+            ->leftJoin('game.publisher', 'publisher');
+    }
+
 }

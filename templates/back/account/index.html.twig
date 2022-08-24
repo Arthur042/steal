@@ -1,91 +1,131 @@
 {% extends 'back/base.html.twig' %}
 
+{% form_theme filters 'bootstrap_5_layout.html.twig' %}
+
 {% block title %}Admin Account{% endblock %}
 
 {% block body %}
 
-    <h1 class="my-3">Liste des comptes</h1>
-
-    <table class="table table-dark table-hover table-striped">
-        <thead>
-        <tr>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Nom', 'account.name')|raw
-                }}
-                {% if app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Email', 'account.email')|raw
-                }}
-                {% if app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Pseudo', 'account.nickname')|raw
-                }}
-                {% if app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Porte-feuille', 'account.wallet')|raw
-                }}
-                {% if app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Date d\'inscription', 'account.createdAt')|raw
-                }}
-                {% if app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-            <th>
-                {{
-                knp_pagination_sortable(accounts, 'Nombre de jeu', 'total')|raw
-                }}
-                {% if app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'asc' %}
-                    <i class="fas fa-sort-up"></i>
-                {% elseif app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'desc' %}
-                    <i class="fas fa-sort-down"></i>
-                {% endif %}
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for account in accounts %}
+    <div class="container-fluid displayForm">
+        <h1 class="my-3">Liste des comptes</h1>
+        {{ form_start(filters) }}
+        <table class="table table-dark table-hover table-striped">
+            <thead>
             <tr>
-                <td>{{ account[0].name }}</td>
-                <td>{{ account[0].email }}</td>
-                <td>{{ account[0].nickname }}</td>
-                <td>{{ account[0].wallet }}€</td>
-                <td>{{ account[0].createdAt|date('d/m/Y') }}</td>
-                <td>{{ account['total'] }}</td>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts,'Pays','country.nationality')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'country.nationality' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'country.nationality' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    {{ form_widget(filters.country) }}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Nom', 'account.name')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'account.name' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    {{ form_widget(filters.name) }}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Email', 'account.email')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'account.email' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    {{ form_widget(filters.email) }}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Pseudo', 'account.nickname')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'account.nickname' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    {{ form_widget(filters.nickname) }}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Porte-feuille', 'account.wallet')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'account.wallet' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    <span class="empty-filter"></span>
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Date d\'inscription', 'account.createdAt')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'account.createdAt' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    <span class="empty-filter"></span>
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(accounts, 'Nombre de jeu', 'total')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'total' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                    <span class="empty-filter"></span>
+                </th>
+                <th>
+                    <div>
+                        <button type="submit" class="filter-action">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <a class="filter-action" href="{{ path('app_admin_account') }}">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                </th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="navigation d-flex justify-content-center my-2">
-        {{ knp_pagination_render(accounts) }}
+            </thead>
+            <tbody>
+            {% for account in accounts %}
+                <tr>
+                    <td>
+                        {% if account[0].country is not null %}
+                            <img src="{{ account[0].country.urlFlag }}"
+                                 alt="{{ account[0].country.name }}"
+                            >
+                        {% endif %}
+                    </td>
+                    <td>{{ account[0].name }}</td>
+                    <td>{{ account[0].email }}</td>
+                    <td>{{ account[0].nickname }}</td>
+                    <td>{{ account[0].wallet }}€</td>
+                    <td>{{ account[0].createdAt|date('d/m/Y') }}</td>
+                    <td>{{ account['total'] }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation d-flex justify-content-center my-2">
+            {{ knp_pagination_render(accounts) }}
+        </div>
+        {{ form_end(filters) }}
     </div>
 
 {% endblock %}

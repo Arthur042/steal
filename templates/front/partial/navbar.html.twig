@@ -19,12 +19,14 @@
             </ul>
 
             <form class="d-flex">
-                <input id="search" class="form-control me-2" type="search" placeholder="Jeu à chercher..." aria-label="Search">
+                <input id="{% if app.request.pathinfo == path('app_game_list') %}searchGame{% else %}search{% endif %}" class="form-control me-2" type="search" placeholder="Jeu à chercher..." aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Chercher</button>
             </form>
-            <div id="returnSearchData">
+            {% if app.request.pathinfo != path('app_game_list') %}
+                <div id="returnSearchData">
 
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 

@@ -1,0 +1,10 @@
+
+
+    <h1 class="my-5">Résultats correspondant à {{ title }}</h1>
+    <div class="row">
+        {% for game in games %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                {% include 'front/partial/card.html.twig' %}
+            </div>
+        {% endfor %}
+    </div>

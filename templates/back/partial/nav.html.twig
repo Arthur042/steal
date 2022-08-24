@@ -69,15 +69,15 @@
     <h4>Jeux</h4>
     <ul class="list-unstyled ps-4">
         <li>
-            <a href="{{ path('app_admin_account') }}"
-               class="{% if app.request.pathinfo == path('app_admin_account') %}menu-active{% endif %}"
+            <a href="{{ path('app_admin_game') }}"
+               class="{% if app.request.pathinfo == path('app_admin_game') %}menu-active{% endif %}"
             >
                 Liste des Jeux
             </a>
         </li>
         <li>
-            <a href="{{ path('app_admin_account') }}"
-               class="{% if app.request.pathinfo == path('app_admin_account') %}menu-active{% endif %}"
+            <a href="{{ path('app_admin_game_new') }}"
+               class="{% if app.request.pathinfo == path('app_admin_game_new') %}menu-active{% endif %}"
             >
                 Ajouter un jeu
             </a>

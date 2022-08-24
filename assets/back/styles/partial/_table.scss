@@ -1,13 +1,16 @@
+.displayForm form{
+  width: 100% !important;
 
-table{
-  width: 90% !important;
-  margin: 0 auto;
+  table{
+    width: 90% !important;
+    margin: 0 auto;
 
-  th{
-    a{
-      transition: .2s ease-in-out;
-      &:hover{
-        color: #ff5400;
+    th{
+      a{
+        transition: .2s ease-in-out;
+        &:hover{
+          color: #ff5400;
+        }
       }
     }
   }

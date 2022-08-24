@@ -17,6 +17,9 @@
             <thead>
             <tr>
                 <th>
+                    Drapeau
+                </th>
+                <th>
                     {{
                     knp_pagination_sortable(countries, 'Nom', 'country.name')|raw
                     }}
@@ -47,9 +50,6 @@
                     {% endif %}
                 </th>
                 <th>
-                    Drapeau
-                </th>
-                <th>
                     Actions
                 </th>
             </tr>
@@ -57,14 +57,14 @@
             <tbody>
             {% for country in countries %}
                 <tr>
-                    <td>{{ country.name }}</td>
-                    <td>{{ country.nationality }}</td>
-                    <td>{{ country.code }}</td>
                     <td>
                         <img src="{{ country.urlFlag }}"
                              alt="{{ country.name }}"
                         >
                     </td>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.nationality }}</td>
+                    <td>{{ country.code }}</td>
                     <td>
                         <a href="{{ path('app_country_admin_edit', {'slug': country.slug}) }}">
                             <i class="fa-solid fa-pen"></i>

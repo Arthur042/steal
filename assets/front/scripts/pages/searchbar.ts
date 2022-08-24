@@ -20,11 +20,9 @@ function querySearchBar() {
                     } else {
                         results.style.display = 'none';
                     }
-
                 })
                 .catch((e) => {
                 });
-
         });
     }
 }

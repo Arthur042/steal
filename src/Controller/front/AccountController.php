@@ -2,9 +2,10 @@
 
 namespace App\Controller\front;
 
-use App\Entity\Country;
+use App\Entity\Account;
 use App\Form\EditAccountType;
 use App\Repository\AccountRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,7 @@ class AccountController extends AbstractController
         AccountRepository $accountRepository,
         string $slug,
         Request $request,
+        FileUploader $fileUploader
     ): Response
     {
         // Find all user information by slug
@@ -36,8 +38,15 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Country $data */
+            /** @var Account $data */
             $data = $form->getData();
+            if ($form->get('pathImage')->getData() !== null) {
+                $file = $fileUploader->uploadFile(
+                    $form->get('pathImage')->getData(),
+                    '/profile'
+                );
+                $data->setPathImage($file);
+            }
             $this->entityManager->persist($data); // => insert into country
             $this->entityManager->flush(); // on tire la chasse => COMMIT
             return $this->redirectToRoute('app_detail_account', [

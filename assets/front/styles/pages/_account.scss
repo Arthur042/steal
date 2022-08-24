@@ -10,6 +10,8 @@
       z-index: 2;
       padding-top: 1rem;
       padding-bottom: 1rem;
+      width: 250px;
+      height: 250px;
     }
 
     .information{
@@ -39,13 +41,13 @@
     }
 
     .accountModification{
-      width: 300px;
+      width: 350px;
       position: absolute;
       left: 0;
       transition: .5s ease-in-out;
 
       &.active{
-        left: 600px;
+        left: 800px;
       }
     }
   }
